@@ -1,0 +1,18 @@
+# This is a sample build configuration for PHP.
+# Check our guides at https://confluence.atlassian.com/x/e8YWN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: phpunit/phpunit:6.5.3
+
+pipelines:
+  branches:
+    master:
+    - step:
+        caches:
+          - composer
+        script:
+          - composer install
+          - php -r "file_exists('.env') || copy('.env.example', '.env');"
+          - php artisan key:generate
+          - vendor/bin/phpunit -c phpunit.xml
