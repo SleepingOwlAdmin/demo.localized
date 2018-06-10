@@ -10,6 +10,7 @@
  ```
  git clone ... . 
  composer install
+ php artisan sleepingowl:install
  php artisan migrate --seed
  ```
  
